@@ -1,0 +1,13 @@
+.idea
+.DS_Store
+**/npm-debug.log
+**/node_modules
+test
+__test__
+src
+build
+docs
+public
+tests
+postcss.config.js
+webpack.config.babel.js
