@@ -80,6 +80,10 @@ export default class extends Component {
     const { active } = this.state;
     const CLASS_NAME = 'react-color-configuration';
     const _value = this.state.value;
+    const displayed = (item) =>{
+      var idx =  _value.indexOf(item);
+      return idx === -1 ? null: idx + 1;
+    };
 
     console.log('value_>', _value);
     return (
@@ -92,8 +96,9 @@ export default class extends Component {
                   onClick={this._onProviderClick.bind(this, item)}
                   className={`${CLASS_NAME}__item`}
                   key={index}
+                  data-color={item}
                   style={{ background: item }}>
-                  {index}
+                  { displayed(item) }
                 </div>
               );
             })}
