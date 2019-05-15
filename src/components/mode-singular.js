@@ -59,13 +59,13 @@ export default class extends Component {
     this.change(value, 'click');
   };
 
-  _onProviderCancel = () => {
-    const value = this.state.dirty;
-    this.setState({ value });
-    this.change(value, 'cancel');
+  _onCancel = (e) => {
+    const { dirty } = this.state;
+    this.setState({ dirty: null });
+    this.change(dirty, 'cancel');
   };
 
-  _onProviderOk = () => {
+  _onOk = (e) => {
     const { value } = this.state;
     this.setState({ dirty: null });
     this.change(value, 'confirm');
@@ -86,6 +86,8 @@ export default class extends Component {
       return idx === -1 ? null : '✔';
     };
 
+    console.log('dirty:->', dirty);
+
     return (
       <section
         className={classNames(CLASS_NAME, className)}
@@ -96,11 +98,11 @@ export default class extends Component {
             {dirty && (
               <div className="right">
                 <span
-                  onClick={this._onProviderCancel}
+                  onClick={this._onCancel}
                   className="action--cancel">
                   取消
                 </span>
-                <span onClick={this._onProviderOk} className="action--ok">
+                <span onClick={this._onOk} className="action--ok">
                   确定
                 </span>
               </div>
