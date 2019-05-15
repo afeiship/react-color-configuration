@@ -18,6 +18,8 @@ class App extends React.Component {
       <div className="app-container">
         <ReactColorConfiguration
           multiple={false}
+          current={'#916400'}
+          value={['#7B0600', '#9E4000', '#916400']}
           onChange={this._onChange}
           onValidate={this._onValidate}
         />

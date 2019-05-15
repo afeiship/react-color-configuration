@@ -11,6 +11,7 @@ export default class extends Component {
   static propTypes = {
     className: PropTypes.string,
     value: PropTypes.array,
+    current: PropTypes.string,
     onModeChange: PropTypes.func,
     onValidate: PropTypes.func,
     onChange: PropTypes.func
@@ -26,11 +27,11 @@ export default class extends Component {
 
   constructor(inProps) {
     super(inProps);
-    const { value } = inProps;
+    const { value, current } = inProps;
     const _value = value.length ? value : CONST_COLORS.slice(0, 1);
     this._staticValue = _value.slice(0);
     this.state = {
-      value: _value,
+      value: [ current ],
       dirty: null
     };
   }
