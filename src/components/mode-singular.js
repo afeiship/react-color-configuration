@@ -86,8 +86,6 @@ export default class extends Component {
       return idx === -1 ? null : '✔';
     };
 
-    console.log('dirty:->', dirty);
-
     return (
       <section
         className={classNames(CLASS_NAME, className)}
