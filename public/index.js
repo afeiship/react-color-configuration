@@ -8,10 +8,18 @@ class App extends React.Component {
     const { value } = e.target;
     console.log('msg:->', value);
   };
+
+  _onChange = (e) => {
+    console.log('onchange:->e', e.target.action, e.target.value);
+  };
+
   render() {
     return (
       <div className="app-container">
-        <ReactColorConfiguration onValidate={this._onValidate} />
+        <ReactColorConfiguration
+          onChange={this._onChange}
+          onValidate={this._onValidate}
+        />
       </div>
     );
   }

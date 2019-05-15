@@ -14,30 +14,46 @@ $react-color-configuration-options: (
   user-select: none;
   margin: 0 auto;
 
-  &__provider {
-    width: 325px;
-    overflow: hidden;
-    > .container {
-      overflow: hidden;
-      width: 110%;
+  [class^="action--"] {
+    cursor: default;
+  }
+
+  [class$="--hd"] {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    > .right {
+      color: #3296ff;
+      .action--cancel {
+        color: #999;
+        text-decoration: none;
+        margin-right: 10px;
+      }
     }
   }
 
-  &__consumer {
-    > .container {
-      overflow: hidden;
-      width: 110%;
-    }
+  [class$="--bd"] {
+    overflow: hidden;
+    width: 110%;
+  }
 
-    &-hd {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 5px;
-      > .right {
-        color: #3296ff;
-        text-decoration: underline;
+  &[data-multiple="false"] {
+    .react-color-configuration__consumer {
+      [class^="action--"] {
+        display: none;
       }
     }
+    .react-color-configuration__consumer-item {
+      pointer-events: none;
+    }
+  }
+
+  &__provider {
+    width: 325px;
+    overflow: hidden;
+  }
+
+  &__consumer {
     &-item {
       width: $size;
       text-align: center;
@@ -84,14 +100,5 @@ $react-color-configuration-options: (
       width: 12px;
       height: 12px;
     }
-  }
-
-  .item--selected {
-  }
-
-  .action--select {
-  }
-
-  .action--delete {
   }
 }
