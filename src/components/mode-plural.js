@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
 import CONST_COLORS from 'next-const-colors';
-import RCM from 'react-condition-manager';
 
 export default class extends Component {
   /*===properties start===*/

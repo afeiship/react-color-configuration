@@ -52,7 +52,6 @@
     "noop": "github:afeiship/noop",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
-    "react-condition-manager": "github:afeiship/react-condition-manager",
     "react-dom": "^16.8.5"
   }
 }

@@ -12,9 +12,8 @@ import {
 export default merge(baseConfig, {
   entry: inputs.build(),
   output: outputs.build(),
-  externals: externals.base(),
-  plugins: [
-    plugins.copyAssets(),
-    plugins.copyStyles()
-  ]
+  externals: externals.base({
+    'next-const-colors': 'next-const-colors'
+  }),
+  plugins: [plugins.copyAssets(), plugins.copyStyles()]
 });
