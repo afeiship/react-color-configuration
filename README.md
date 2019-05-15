@@ -6,6 +6,29 @@
 npm install -S afeiship/react-color-configuration
 ```
 
+## apis
+1. singular mode
+
+  | property  | type   | description              |
+  | --------- | ------ | ------------------------ |
+  | className | string | Extend className for css |
+  | value     | array  | Displayed current colors |
+  | current   | string | Current selected color   |
+  | onChange  | func   | Any change               |
+
+
+2. plural mode
+  
+  | property   | type   | description              |
+  | ---------- | ------ | ------------------------ |
+  | className  | string | Extend className for css |
+  | value      | array  | Displayed current colors |
+  | min        | number | Min limit colors         |
+  | max        | number | Max limit colors         |
+  | onValidate | func   | When warning             |
+  | onChange   | func   | Any change               |
+
+
 ## usage
 1. import css
   ```scss

@@ -13,14 +13,12 @@ export default class extends Component {
     value: PropTypes.array,
     current: PropTypes.string,
     onModeChange: PropTypes.func,
-    onValidate: PropTypes.func,
     onChange: PropTypes.func
   };
 
   static defaultProps = {
     value: [],
     onModeChange: noop,
-    onValidate: noop,
     onChange: noop
   };
   /*===properties end===*/
