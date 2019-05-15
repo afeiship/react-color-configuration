@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import noop from 'noop';
 import objectAssign from 'object-assign';
 import CONST_COLORS from 'next-const-colors';
+import RCM from 'react-condition-manager';
 
 export default class extends Component {
   /*===properties start===*/
@@ -32,11 +33,9 @@ export default class extends Component {
     const _value = value.length ? value : CONST_COLORS.slice(0, 1);
     this.state = {
       value: _value,
-      editing: false,
       active: null,
       dirty: null
     };
-    this._staticValue = _value.slice(0);
   }
 
   componentWillReceiveProps(inNextProps) {
@@ -49,36 +48,39 @@ export default class extends Component {
     }
   }
 
-  change(inValue, inCallback) {
+  change(inValue, inAction) {
     const { onChange } = this.props;
-    const callback = inCallback || noop;
+    const { value, dirty } = this.state;
     const target = { value: inValue };
+    !dirty && this.setState({ dirty: value.slice(0) });
     this.setState(target, () => {
+      target.action = inAction;
       onChange({ target });
-      callback();
     });
   }
 
   _onProviderClick = (inItem) => {
-    const { value, active } = this.state;
+    const { value, active, dirty } = this.state;
     const { onValidate, max } = this.props;
     const length = value.length;
+    const _value = value.slice(0);
+    // dirty:
+
     if (value.indexOf(inItem) > -1) {
       onValidate({ target: { value: 'DUPLICATE' } });
     } else {
       const activeIndex = value.indexOf(active);
       if (activeIndex === -1) {
         if (length < max) {
-          value.push(inItem);
-          this.change(value);
+          _value.push(inItem);
+          this.change(_value, 'add');
         } else {
           onValidate({ target: { value: 'GT_MAX' } });
         }
       } else {
-        value[activeIndex] = inItem;
-        this.change(value, () => {
-          this.setState({ active: inItem });
-        });
+        _value[activeIndex] = inItem;
+        this.setState({ active: inItem });
+        this.change(_value, 'replace');
       }
     }
   };
@@ -90,10 +92,11 @@ export default class extends Component {
   _onDelete = (inItem) => {
     const { onValidate, min } = this.props;
     const { value } = this.state;
+    const _value = value.slice(0);
     if (value.length > min) {
       const index = value.indexOf(inItem);
-      value.splice(index, 1);
-      this.change(value);
+      _value.splice(index, 1);
+      this.change(_value, 'remove');
     } else {
       onValidate({ target: { value: 'LT_MIN' } });
     }
@@ -103,20 +106,21 @@ export default class extends Component {
     this.setState({ active: null });
   };
 
-  _onEdit = () => {
-    this.setState({ editing: true });
+  _onCancel = (e) => {
+    const { dirty } = this.state;
+    this.setState({ dirty: null });
+    this.change(dirty, 'cancel');
   };
 
-  _onDone = () => {
-    this.setState({ editing: false });
+  _onOk = (e) => {
+    const { value } = this.state;
+    this.setState({ dirty: null });
+    this.change(value, 'confirm');
   };
-
-  _onConsumerCancel = (e) => {};
-  _onConsumerOk = (e) => {};
 
   render() {
     const { className, items, value, max, ...props } = this.props;
-    const { active, dirty, editing } = this.state;
+    const { active, dirty } = this.state;
     const CLASS_NAME = 'react-color-configuration';
     const _value = this.state.value;
     const displayed = (item) => {
@@ -124,13 +128,15 @@ export default class extends Component {
       return idx === -1 ? null : idx + 1;
     };
 
+    console.log('dirty:', dirty);
+
     return (
       <section
         className={classNames(CLASS_NAME, className)}
         data-multiple={'true'}>
         <div className={`clearfix ${CLASS_NAME}__provider`}>
           <header className="mod--hd">
-            <span className="left">颜色编辑 - plural</span>
+            <span className="left">颜色编辑</span>
           </header>
           <div className="mod--bd">
             {CONST_COLORS.map((item, index) => {
@@ -150,23 +156,16 @@ export default class extends Component {
         <div className={`${CLASS_NAME}__consumer`}>
           <header className="mod--hd">
             <span className="left">默认配色顺序</span>
-            <span
-              hidden={!editing}
-              onClick={this._onEdit}
-              className="status--edit right">
-              修改
-            </span>
-            <div
-              hidden={editing}
-              onClick={this._onDone}
-              className="status--done right">
-              <span onClick={this._onConsumerCancel} className="action--cancel">
-                取消
-              </span>
-              <span onClick={this._onConsumerOk} className="action--ok">
-                确定
-              </span>
-            </div>
+            {dirty && (
+              <div className="status--menu right">
+                <span onClick={this._onCancel} className="action--cancel">
+                  取消
+                </span>
+                <span onClick={this._onOk} className="action--ok">
+                  确定
+                </span>
+              </div>
+            )}
           </header>
           <div className="mod--bd">
             {_value.map((item, index) => {

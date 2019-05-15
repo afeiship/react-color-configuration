@@ -1,0 +1,104 @@
+$react-color-configuration-options: (
+  size: 26px
+) !default;
+
+.react-color-configuration {
+  $size: map-get(
+    $map: $react-color-configuration-options,
+    $key: size
+  );
+
+  font-family: PingFang SC;
+  width: 325px;
+  font-size: 12px;
+  user-select: none;
+  margin: 0 auto;
+
+  [class^="action--"] {
+    cursor: default;
+  }
+
+  [class$="--hd"] {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    > .right {
+      color: #3296ff;
+      .action--cancel {
+        color: #999;
+        text-decoration: none;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  [class$="--bd"] {
+    overflow: hidden;
+    width: 110%;
+  }
+
+  &[data-multiple="false"] {
+    .react-color-configuration__consumer {
+      [class^="action--"] {
+        display: none;
+      }
+    }
+    .react-color-configuration__consumer-item {
+      pointer-events: none;
+    }
+  }
+
+  &__provider {
+    width: 325px;
+    overflow: hidden;
+  }
+
+  &__consumer {
+    &-item {
+      width: $size;
+      text-align: center;
+      float: left;
+      margin-right: 16.7px;
+      .react-color-configuration__item {
+        margin: 0;
+        float: none;
+      }
+    }
+  }
+
+  &__item {
+    cursor: pointer;
+    box-sizing: border-box;
+    margin-right: 16.7px;
+    margin-bottom: 16.7px;
+    border-radius: 30px;
+    float: left;
+    width: $size;
+    height: $size;
+    line-height: $size;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+      opacity: 0.8;
+    }
+  }
+
+  &__placeholder {
+    border: 1px solid #ccc;
+    color: #333;
+  }
+
+  &__action {
+    [class^="action--"] {
+      display: block;
+      margin: 4px 0 0;
+    }
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

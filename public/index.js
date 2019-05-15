@@ -17,6 +17,7 @@ class App extends React.Component {
     return (
       <div className="app-container">
         <ReactColorConfiguration
+          multiple={false}
           onChange={this._onChange}
           onValidate={this._onValidate}
         />
