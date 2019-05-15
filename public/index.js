@@ -4,10 +4,14 @@ import React from 'react';
 import './assets/style.scss';
 
 class App extends React.Component {
+  _onValidate = (e) => {
+    const { value } = e.target;
+    console.log('msg:->', value);
+  };
   render() {
     return (
       <div className="app-container">
-        <ReactColorConfiguration />
+        <ReactColorConfiguration onValidate={this._onValidate} />
       </div>
     );
   }

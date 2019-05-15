@@ -1,4 +1,90 @@
-$react-color-configuration-options: () !default;
+$react-color-configuration-options: (
+  size: 26px
+) !default;
 
 .react-color-configuration {
+  $size: map-get(
+    $map: $react-color-configuration-options,
+    $key: size
+  );
+
+  font-family: PingFang SC;
+  width: 325px;
+  font-size: 12px;
+  margin: 0 auto;
+
+  &__provider {
+    width: 325px;
+    overflow: hidden;
+    > .container {
+      overflow: hidden;
+      width: 110%;
+    }
+  }
+
+  &__consumer {
+    > .container {
+      overflow: hidden;
+      width: 110%;
+    }
+
+    &-hd {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      > .right {
+        color: #3296ff;
+        text-decoration: underline;
+      }
+    }
+    &-item {
+      width: $size;
+      text-align: center;
+      float: left;
+      margin-right: 16.7px;
+      .react-color-configuration__item {
+        margin: 0;
+        float: none;
+      }
+    }
+  }
+
+  &__item {
+    box-sizing: border-box;
+    margin-right: 16.7px;
+    margin-bottom: 16.7px;
+    border-radius: 30px;
+    float: left;
+    width: $size;
+    height: $size;
+    line-height: $size;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  &__placeholder {
+    border: 1px solid #ccc;
+    color: #333;
+  }
+
+  &__action {
+    [class^="action--"] {
+      display: block;
+      margin: 4px 0 0;
+    }
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .item--selected {
+  }
+
+  .action--select {
+  }
+
+  .action--delete {
+  }
 }

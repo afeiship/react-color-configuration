@@ -13,5 +13,8 @@ export default merge(baseConfig, {
   entry: inputs.build(),
   output: outputs.build(),
   externals: externals.base(),
-  plugins: [plugins.copyStyles()]
+  plugins: [
+    plugins.copyAssets(),
+    plugins.copyStyles()
+  ]
 });
