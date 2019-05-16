@@ -152,7 +152,7 @@ export default class extends Component {
         </div>
         <div className={`${CLASS_NAME}__consumer`}>
           <header className="mod--hd">
-            <span className="left">默认配色顺序</span>
+            <span className="left mod--label">默认配色顺序</span>
             {dirty && (
               <div className="status--menu right">
                 <span
