@@ -122,7 +122,9 @@ export default class extends Component {
         <div className={`${CLASS_NAME}__consumer`}>
           <header className="mod--hd">
             <span className="left mod--label">默认配色顺序</span>
-            <span onClick={this._onEdit} className="status--edit right">
+            <span
+              onClick={this._onEdit}
+              className="status--edit right mod--link">
               修改
             </span>
           </header>
