@@ -91,15 +91,15 @@ export default class extends Component {
         data-multiple="false">
         <div className={`${CLASS_NAME}__provider`}>
           <header className="mod--hd">
-            <span className="left">颜色编辑</span>
+            <span className="mod--label">颜色编辑</span>
             {dirty && (
               <div className="right">
                 <span
                   onClick={this._onCancel}
-                  className="action--cancel">
+                  className="mod--link action--cancel">
                   取消
                 </span>
-                <span onClick={this._onOk} className="action--ok">
+                <span onClick={this._onOk} className="mod--link action--ok">
                   确定
                 </span>
               </div>
@@ -112,7 +112,6 @@ export default class extends Component {
                   onClick={this._onProviderClick.bind(this, item)}
                   className={`${CLASS_NAME}__item`}
                   key={index}
-                  data-color={item}
                   style={{ background: item }}>
                   {displayed(item)}
                 </div>

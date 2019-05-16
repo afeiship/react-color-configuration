@@ -133,7 +133,7 @@ export default class extends Component {
         data-multiple={'true'}>
         <div className={`clearfix ${CLASS_NAME}__provider`}>
           <header className="mod--hd">
-            <span className="left">颜色编辑</span>
+            <span className="mod--label">颜色编辑</span>
           </header>
           <div className="mod--bd">
             {CONST_COLORS.map((item, index) => {
@@ -155,10 +155,12 @@ export default class extends Component {
             <span className="left">默认配色顺序</span>
             {dirty && (
               <div className="status--menu right">
-                <span onClick={this._onCancel} className="action--cancel">
+                <span
+                  onClick={this._onCancel}
+                  className="mod--link action--cancel">
                   取消
                 </span>
-                <span onClick={this._onOk} className="action--ok">
+                <span onClick={this._onOk} className="mod--link action--ok">
                   确定
                 </span>
               </div>
