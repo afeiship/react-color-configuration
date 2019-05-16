@@ -37,17 +37,6 @@ $react-color-configuration-options: (
     width: 110%;
   }
 
-  &[data-multiple="false"] {
-    .react-color-configuration__consumer {
-      [class^="action--"] {
-        display: none;
-      }
-    }
-    .react-color-configuration__consumer-item {
-      pointer-events: none;
-    }
-  }
-
   &__provider {
     width: 325px;
     overflow: hidden;

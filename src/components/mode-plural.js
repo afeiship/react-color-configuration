@@ -32,7 +32,7 @@ export default class extends Component {
     const _value = value.length ? value : CONST_COLORS.slice(0, 1);
     this.state = {
       value: _value,
-      active: null,
+      active: _value[0],
       dirty: null
     };
   }
@@ -59,7 +59,7 @@ export default class extends Component {
   }
 
   _onProviderClick = (inItem) => {
-    const { value, active, dirty } = this.state;
+    const { value, active } = this.state;
     const { onValidate, max } = this.props;
     const length = value.length;
     const _value = value.slice(0);
