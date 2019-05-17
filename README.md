@@ -9,15 +9,16 @@ npm install -S afeiship/react-color-configuration
 ## options
 > All used options.
 
-| property   | type   | description              |
-| ---------- | ------ | ------------------------ |
-| className  | string | Extend className for css |
-| value      | array  | Displayed current colors |
-| current    | string | Current selected color   |
-| min        | number | Min limit colors         |
-| max        | number | Max limit colors         |
-| onValidate | func   | When warning             |
-| onChange   | func   | Any change               |
+| property     | type   | description              |
+| ------------ | ------ | ------------------------ |
+| className    | string | Extend className for css |
+| value        | array  | Displayed current colors |
+| current      | string | Current selected color   |
+| min          | number | Min limit colors         |
+| max          | number | Max limit colors         |
+| onValidate   | func   | When warning             |
+| onModeChange | func   | When multiple change     |
+| onChange     | func   | Any change               |
 
 ## singular/plural mode
 1. singular mode(multiple=false)
