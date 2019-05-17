@@ -12,13 +12,11 @@ export default class extends Component {
     className: PropTypes.string,
     value: PropTypes.array,
     current: PropTypes.string,
-    onModeChange: PropTypes.func,
     onChange: PropTypes.func
   };
 
   static defaultProps = {
     value: [],
-    onModeChange: noop,
     onChange: noop
   };
   /*===properties end===*/
@@ -29,7 +27,7 @@ export default class extends Component {
     const _value = value.length ? value : CONST_COLORS.slice(0, 1);
     this._staticValue = _value.slice(0);
     this.state = {
-      value: [ current ],
+      value: [current],
       dirty: null
     };
   }
@@ -70,12 +68,8 @@ export default class extends Component {
     this.change(value, 'confirm');
   };
 
-  _onEdit = () => {
-    this.props.onModeChange();
-  };
-
   render() {
-    const { className, items, value, max, ...props } = this.props;
+    const { className, items, value, max, onModeChange, ...props } = this.props;
     const { dirty } = this.state;
     const CLASS_NAME = 'react-color-configuration';
     const _value = this.state.value;
@@ -123,7 +117,7 @@ export default class extends Component {
           <header className="mod--hd">
             <span className="left mod--label">默认配色顺序</span>
             <span
-              onClick={this._onEdit}
+              onClick={onModeChange}
               className="status--edit right mod--link">
               修改
             </span>

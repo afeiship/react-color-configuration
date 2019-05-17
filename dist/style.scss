@@ -14,6 +14,10 @@ $react-color-configuration-options: (
   user-select: none;
   margin: 0 auto;
 
+  .mod--link {
+    color: #3296ff;
+  }
+
   [class^="action--"] {
     cursor: default;
   }
@@ -23,7 +27,6 @@ $react-color-configuration-options: (
     justify-content: space-between;
     margin-bottom: 10px;
     > .right {
-      color: #3296ff;
       .action--cancel {
         color: #999;
         text-decoration: none;

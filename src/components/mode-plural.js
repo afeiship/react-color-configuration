@@ -14,6 +14,7 @@ export default class extends Component {
     min: PropTypes.number,
     max: PropTypes.number,
     onValidate: PropTypes.func,
+    onModeChange: PropTypes.func,
     onChange: PropTypes.func
   };
 
@@ -22,6 +23,7 @@ export default class extends Component {
     min: 1,
     max: 8,
     onValidate: noop,
+    onModeChange: noop,
     onChange: noop
   };
   /*===properties end===*/
@@ -118,7 +120,7 @@ export default class extends Component {
   };
 
   render() {
-    const { className, items, value, max, ...props } = this.props;
+    const { className, items, value, max, onModeChange, ...props } = this.props;
     const { active, dirty } = this.state;
     const CLASS_NAME = 'react-color-configuration';
     const _value = this.state.value;
@@ -153,6 +155,11 @@ export default class extends Component {
         <div className={`${CLASS_NAME}__consumer`}>
           <header className="mod--hd">
             <span className="left mod--label">默认配色顺序</span>
+            {!dirty && (
+              <span onClick={onModeChange} className="mod--link">
+                完成
+              </span>
+            )}
             {dirty && (
               <div className="status--menu right">
                 <span

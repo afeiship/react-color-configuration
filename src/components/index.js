@@ -17,6 +17,7 @@ export default class extends Component {
     min: PropTypes.number,
     max: PropTypes.number,
     onValidate: PropTypes.func,
+    onModeChange: PropTypes.func,
     onChange: PropTypes.func
   };
 
@@ -26,30 +27,50 @@ export default class extends Component {
     min: 1,
     max: 8,
     onValidate: noop,
+    onModeChange: noop,
     onChange: noop
   };
   /*===properties end===*/
 
   constructor(inProps) {
     super(inProps);
-    const { value, multiple } = inProps;
+    const { multiple } = inProps;
     this.state = {
       multiple
     };
   }
 
+  componentWillReceiveProps(inNextProps) {
+    const { multiple } = inNextProps;
+    if (multiple !== this.state.multiple) {
+      this.modeChange(multiple);
+    }
+  }
+
+  modeChange(inValue) {
+    const { onModeChange } = this.props;
+    const target = { multiple: inValue };
+    this.setState(target, () => {
+      onModeChange({ target });
+    });
+  }
+
   _onModeChange = (inValue) => {
-    this.setState({ multiple: inValue });
+    this.modeChange(inValue);
   };
 
   render() {
     const { multiple } = this.state;
+    const { onModeChange, ...props } = this.props;
     return multiple ? (
-      <ModePlural {...this.props} />
+      <ModePlural
+        onModeChange={this._onModeChange.bind(this, false)}
+        {...props}
+      />
     ) : (
       <ModeSingular
         onModeChange={this._onModeChange.bind(this, true)}
-        {...this.props}
+        {...props}
       />
     );
   }
