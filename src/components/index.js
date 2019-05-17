@@ -40,12 +40,12 @@ export default class extends Component {
     };
   }
 
-  componentWillReceiveProps(inNextProps) {
-    const { multiple } = inNextProps;
-    if (multiple !== this.state.multiple) {
-      this.modeChange(multiple);
-    }
-  }
+  // componentWillReceiveProps(inNextProps) {
+  //   const { multiple } = inNextProps;
+  //   if (multiple !== this.state.multiple) {
+  //     this.modeChange(multiple);
+  //   }
+  // }
 
   modeChange(inValue) {
     const { onModeChange } = this.props;
