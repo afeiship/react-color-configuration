@@ -56,6 +56,7 @@ export default class extends Component {
     !dirty && this.setState({ dirty: value.slice(0) });
     this.setState(target, () => {
       target.action = inAction;
+      target.multiple = true;
       onChange({ target });
     });
   }

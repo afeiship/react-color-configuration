@@ -44,6 +44,7 @@ export default class extends Component {
     const target = { value: inValue };
     this.setState(target, () => {
       target.action = inAction;
+      target.multiple = false;
       onChange({ target });
     });
   }
