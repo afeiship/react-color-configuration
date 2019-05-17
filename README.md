@@ -17,7 +17,6 @@ npm install -S afeiship/react-color-configuration
 | min          | number | Min limit colors         |
 | max          | number | Max limit colors         |
 | onValidate   | func   | When warning             |
-| onModeChange | func   | When multiple change     |
 | onChange     | func   | Any change               |
 
 ## singular/plural mode

@@ -27,7 +27,6 @@ export default class extends Component {
     min: 1,
     max: 8,
     onValidate: noop,
-    onModeChange: noop,
     onChange: noop
   };
   /*===properties end===*/
@@ -40,23 +39,8 @@ export default class extends Component {
     };
   }
 
-  // componentWillReceiveProps(inNextProps) {
-  //   const { multiple } = inNextProps;
-  //   if (multiple !== this.state.multiple) {
-  //     this.modeChange(multiple);
-  //   }
-  // }
-
-  modeChange(inValue) {
-    const { onModeChange } = this.props;
-    const target = { multiple: inValue };
-    this.setState(target, () => {
-      onModeChange({ target });
-    });
-  }
-
   _onModeChange = (inValue) => {
-    this.modeChange(inValue);
+    this.setState({ multiple: inValue });
   };
 
   render() {
