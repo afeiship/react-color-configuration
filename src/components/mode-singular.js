@@ -35,7 +35,8 @@ export default class extends Component {
   componentWillReceiveProps(inNextProps) {
     const { value } = inNextProps;
     if (value !== this.state.value) {
-      this.change(value);
+      // this.change(value);
+      this.setState({ value: value[0] });
     }
   }
 
