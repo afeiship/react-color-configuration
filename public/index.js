@@ -10,7 +10,7 @@ class App extends React.Component {
   };
 
   _onChange = (e) => {
-    console.log('onchange:->e', e.target.action, e.target.value);
+    // console.log('onchange:->e', e.target.action, e.target.value);
   };
 
   render() {

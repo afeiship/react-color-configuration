@@ -6,5 +6,6 @@ export default merge(baseConfig, {
   entry: inputs.docs(),
   output: outputs.dev(),
   devServer: configs.devServer(),
+  devtool: configs.devtool(),
   plugins: [plugins.html()]
 });

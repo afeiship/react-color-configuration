@@ -23,39 +23,31 @@ export default class extends Component {
 
   constructor(inProps) {
     super(inProps);
-    const { value, current } = inProps;
-    const _value = value.length ? value : CONST_COLORS.slice(0, 1);
-    this._staticValue = _value.slice(0);
+    const { current } = inProps;
     this.state = {
-      value: [current],
+      current,
       dirty: null
     };
   }
 
-  componentWillReceiveProps(inNextProps) {
-    const { value } = inNextProps;
-    if (value !== this.state.value) {
-      // this.change(value);
-      this.setState({ value: value.slice(0,1)});
-    }
-  }
-
   change(inValue, inAction) {
     const { onChange } = this.props;
-    const target = { value: inValue };
-    this.setState(target, () => {
-      target.action = inAction;
-      target.multiple = false;
-      onChange({ target });
+    this.setState({ current: inValue }, () => {
+      onChange({
+        target: {
+          value: [inValue],
+          multiple: false,
+          action: inAction
+        }
+      });
     });
   }
 
   _onProviderClick = (inItem) => {
-    const { dirty, value } = this.state;
-    const old = value.slice(0);
-    value[0] = inItem;
+    const { dirty, current } = this.state;
+    const old = current;
     !dirty && this.setState({ dirty: old });
-    this.change(value, 'click');
+    this.change(inItem, 'click');
   };
 
   _onCancel = (e) => {
@@ -65,21 +57,21 @@ export default class extends Component {
   };
 
   _onOk = (e) => {
-    const { value } = this.state;
+    const { current } = this.state;
     this.setState({ dirty: null });
-    this.change(value, 'confirm');
+    this.change(current, 'confirm');
   };
 
   render() {
     const { className, items, value, max, onModeChange, ...props } = this.props;
-    const { dirty } = this.state;
+    const { current, dirty } = this.state;
     const CLASS_NAME = 'react-color-configuration';
-    const _value = this.state.value;
 
     const displayed = (item) => {
-      const idx = _value.indexOf(item);
-      return idx === -1 ? null : '✔';
+      return current === item ? '✔' : null;
     };
+
+    console.log(' current;->', current);
 
     return (
       <section
@@ -125,7 +117,7 @@ export default class extends Component {
             </span>
           </header>
           <div className="mod--bd">
-            {this._staticValue.map((item, index) => {
+            {value.map((item, index) => {
               return (
                 <div key={index} className={`${CLASS_NAME}__consumer-item`}>
                   <div
