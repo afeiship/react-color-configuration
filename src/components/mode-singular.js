@@ -36,7 +36,7 @@ export default class extends Component {
     const { value } = inNextProps;
     if (value !== this.state.value) {
       // this.change(value);
-      this.setState({ value: value[0] });
+      this.setState({ value: value.slice(0,1)});
     }
   }
 
