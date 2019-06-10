@@ -32,9 +32,11 @@ export default class extends Component {
 
   change(inValue, inAction) {
     const { onChange } = this.props;
+    const { dirty } = this.state;
     this.setState({ current: inValue }, () => {
       onChange({
         target: {
+          dirty,
           value: [inValue],
           multiple: false,
           action: inAction
@@ -71,7 +73,8 @@ export default class extends Component {
       return current === item ? '✔' : null;
     };
 
-    console.log(' current;->', current);
+    // console.log(' current:->', current);
+    // console.log(' dirty:->', dirty);
 
     return (
       <section

@@ -57,6 +57,7 @@ export default class extends Component {
     this.setState(target, () => {
       target.action = inAction;
       target.multiple = true;
+      target.dirty = dirty;
       onChange({ target });
     });
   }
@@ -129,6 +130,8 @@ export default class extends Component {
       const idx = _value.indexOf(item);
       return idx === -1 ? null : idx + 1;
     };
+
+    // console.log(' dirty:->', dirty);
 
     return (
       <section
