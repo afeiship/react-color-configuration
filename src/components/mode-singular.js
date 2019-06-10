@@ -48,7 +48,7 @@ export default class extends Component {
   _onProviderClick = (inItem) => {
     const { dirty, current } = this.state;
     const old = current;
-    !dirty && this.setState({ dirty: old });
+    !dirty && (this.state.dirty = old) && this.setState({ dirty: old });
     this.change(inItem, 'click');
   };
 
